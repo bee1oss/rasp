@@ -27,9 +27,9 @@ app.delete('/rasps/:id', checkAuth, RaspisaniyaController.remove);//bu postu sil
 app.get('/rasps/:id',RaspisaniyaController.getOne);//bu tek bir veriyi raspisaniya satirini almak icindir not:bunu sakin silme cunku bu update icin kullanilmaktadir
 app.patch('/rasps/:id', checkAuth,raspCreateValidation,handleValidationErrors, RaspisaniyaController.update);//bu postu degistirmek icinn
 /* API's FOR TIME */
-app.post('/times',TimeController.create);
-app.patch('/times/:id',TimeController.update);
-app.get('/times/:id',TimeController.getOne);
-app.delete('/times/:id',TimeController.remove);
+app.post('/times',checkAuth,TimeController.create);
+app.patch('/times/:id',checkAuth,TimeController.update);
+app.get('/times/:id',checkAuth,TimeController.getOne);
+app.delete('/times/:id',checkAuth,TimeController.remove);
 app.listen(5555, ()=> console.log('Server up and running...'));
 //asasa
