@@ -32,4 +32,3 @@ app.patch('/times/:id',checkAuth,TimeController.update);
 app.get('/times/:id',checkAuth,TimeController.getOne);
 app.delete('/times/:id',checkAuth,TimeController.remove);
 app.listen(5555, ()=> console.log('Server up and running...'));
-//asasa
