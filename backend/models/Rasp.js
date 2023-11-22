@@ -7,7 +7,8 @@ const RaspSchema = mongoose.Schema({
         required: true
         },
     day:{
-        type: String,
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Days',
         required: true
     },
     predmed:{

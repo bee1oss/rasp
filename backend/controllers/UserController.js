@@ -29,7 +29,7 @@ export const register = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'Не удалось зарегистрироваться',
+            messeage: 'Failed to register',
         });
     }
 };
@@ -39,13 +39,13 @@ export const login = async (req, res) => {
         const user = await UserModel.findOne({email: req.body.email});
         if (!user) {
             return res.status(404).json({
-                message: 'Пользователь не найден',//eger gercek proje yapiyorsan bu kismi sadece login veya password yalnis deyip gec
+                message: 'User is not found',//eger gercek proje yapiyorsan bu kismi sadece login veya password yalnis deyip gec
             });
         }
         const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
         if (!isValidPass) {
             return res.status(403).json({
-                message: 'Ваш адрес электронной почты или пароль неверны',//eger gercek proje yapiyorsan bu kismi sadece login veya password yalnis deyip gec
+                message: 'Your e-mail address or password is incorrect',//eger gercek proje yapiyorsan bu kismi sadece login veya password yalnis deyip gec
             });
         }
 
@@ -64,17 +64,17 @@ export const login = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'Авторизация не удалась',
+            messeage: 'Authorization failed',
         });
     }
 };
 
-/*export const getMe = async (req,res)=>{
+export const getMe = async (req,res)=>{
     try {
         const user = await UserModel.findById(req.userId);
         if (!user){
             return res.status(404).json({
-                message: 'Пользователь не найден',
+                message: 'User is not found',
             });
         }else{
             const {passwordHash, ...userData} = user._doc;
@@ -84,7 +84,7 @@ export const login = async (req, res) => {
     }catch (err) {
         console.log(err);
         res.status(500).json({//asas
-            messeage: 'У вас нет доступа',
+            messeage: 'You dont have access',
         });
     }
-};*/
+};

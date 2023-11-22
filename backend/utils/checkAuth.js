@@ -10,12 +10,12 @@ export default (req,res,next)=>{
             next();
         }catch (err) {
             return res.status(403).json({
-                message: 'Erisiminiz yok',
+                message: 'You dont have access',
             });
         }
     }else {
         return res.status(403).json({
-            message: 'Erisiminiz yok',
+            message: 'You dont have access',
         });//
     }
 };

@@ -11,7 +11,7 @@ export const getAll = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'расписания операция отображения не удалась',
+            messeage: 'schedule display operation failed',
         });
     }
 };
@@ -26,12 +26,12 @@ export const remove = async (req, res) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
-                    message: 'расписания удаление не удалось',
+                    message: 'schedule deletion failed',
                 });
             }
             if (!doc) {
                 return res.status(404).json({
-                    message: 'расписания не найдено',
+                    message: 'no schedule found',
                 });
             }
             res.json({success: true,});
@@ -40,7 +40,7 @@ export const remove = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось удалить',
+            message: 'Failed to delete',
         });
     }
 };
@@ -60,13 +60,13 @@ export const getOne = async (req, res) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
-                        message: 'расписания не называется',
+                        message: 'no schedule announced',
                     });
                 }
 
                 if (!doc) {
                     return res.status(404).json({
-                        message: 'расписания не найдено',
+                        message: 'no schedule found',
                     });
                 }
 
@@ -76,7 +76,7 @@ export const getOne = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось получить расписания',
+            message: 'Failed to get schedules',
         });
     }
 };
@@ -125,7 +125,7 @@ export const update = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось обновить расписания',
+            message: 'Failed to update schedules',
         });
     }
 };

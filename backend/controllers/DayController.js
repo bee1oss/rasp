@@ -1,56 +1,56 @@
-import TimeModel from "../models/Times.js";
+import DayModel from "../models/Day.js";
 
-export const create = async (req, res) => {//ok
+export const create = async (req, res) => {
     try {
-        const timesDoc = new TimeModel({
-            time: req.body.time,
+        const daysDoc = new DayModel({
+            day: req.body.day,
         });
-        const time = await timesDoc.save();
+        const day = await daysDoc.save();
 
-        res.json(time);
+        res.json(day);
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'Cannot create time',
+            messeage: 'Cannot create day',
         });
     }
 };
 
-export const update = async (req, res) => {//ok
+export const update = async (req, res) => {
     try {
-        const timeId = req.params.id;
+        const dayId = req.params.id;
 
-        await TimeModel.updateOne({
-            _id: timeId,
+        await DayModel.updateOne({
+            _id: dayId,
         }, {
-            time: req.body.time,
+            day: req.body.day,
             
         });
         res.json({success: true});
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot update time',
+            message: 'Cannot update day',
         });
     }
 };
 
-export const remove = async (req, res) => {//ok
+export const remove = async (req, res) => {//en son denenecek
     try {
-        const timeId = req.params.id;
+        const dayId = req.params.id;
 
-        TimeModel.findOneAndDelete({
-            _id: timeId,
+        DayModel.findOneAndDelete({
+            _id: dayId,
         }, (err, doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
-                    message: 'Cannot delete time',
+                    message: 'Cannot delete day',
                 });
             }
             if (!doc) {
                 return res.status(404).json({
-                    message: 'Cannot find time for delete',
+                    message: 'Cannot find day for delete',
                 });
             }
             res.json({success: true,});
@@ -59,18 +59,18 @@ export const remove = async (req, res) => {//ok
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot delete time',
+            message: 'Cannot delete day',
         });
     }
 };
 
-export const getOne = async (req, res) => {//ok
+export const getOne = async (req, res) => {
     try {
-        const timeId = req.params.id;
+        const dayId = req.params.id;
 
-        TimeModel.findOneAndUpdate(
+        DayModel.findOneAndUpdate(
             {
-                _id: timeId,
+                _id: dayId,
             },
             {
                 returnDocument: 'after',
@@ -79,13 +79,13 @@ export const getOne = async (req, res) => {//ok
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
-                        message: 'Cannot find time',
+                        message: 'Cannot find day',
                     });
                 }
 
                 if (!doc) {
                     return res.status(404).json({
-                        message: 'Cannot find time',
+                        message: 'Cannot find day',
                     });
                 }
 
@@ -95,20 +95,20 @@ export const getOne = async (req, res) => {//ok
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot get time',
+            message: 'Cannot get day',
         });
     }
 };
 
 export const getAll = async (req, res) => {
     try {
-        const times = await TimeModel.find();
-        res.json(times);
+        const days = await DayModel.find();
+        res.json(days);
         
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'time display operation failed',
+            messeage: 'day display operation failed',
         });
     }
 };
