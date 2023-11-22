@@ -85,7 +85,7 @@ export const create = async (req, res) => {
     try {
         const doc = new RaspModel({
             time: req.body.timeId,
-            day: req.body.day,
+            day: req.body.dayId,
             predmed: req.body.predmed,
             group: req.body.group,
             teacher: req.body.teacher,
@@ -112,7 +112,7 @@ export const update = async (req, res) => {
             _id: raspId,
         }, {
             time: req.body.timeId,
-            day: req.body.day,
+            day: req.body.dayId,
             predmed: req.body.predmed,
             group: req.body.group,
             teacher: req.body.teacher,

@@ -23,19 +23,20 @@ app.get('/auth/me', checkAuth, UserController.getMe);//(successful)
 /* API's FOR Syllabus */
 app.get('/syllabuses', RaspisaniyaController.getAll);//To see the full course schedule api(successful)
 app.post('/create-syllabus', checkAuth, raspCreateValidation, handleValidationErrors,RaspisaniyaController.create);//To create a lesson program api(successful)
-app.delete('/syllabus/delete/:id', checkAuth, RaspisaniyaController.remove);//To delete the course schedule(successful)
+app.delete('/delete-syllabus/:id', checkAuth, RaspisaniyaController.remove);//To delete the course schedule(successful)
 app.get('/syllabus/:id',RaspisaniyaController.getOne);//To get a course program by its id(successful)
-app.patch('/syllabus/:id', checkAuth,raspCreateValidation,handleValidationErrors, RaspisaniyaController.update);//this for update syllabus(successful)
+app.patch('/update-syllabus/:id', RaspisaniyaController.update);//this for update syllabus(successful)
 /* API's FOR TIME */
 app.post('/create-time',checkAuth,TimeController.create);//(successful)
-app.patch('/time/:id',checkAuth,TimeController.update);//(successful)
+app.patch('/update-time/:id',checkAuth,TimeController.update);//(successful)
 app.get('/time/:id',checkAuth,TimeController.getOne);//(successful)
-app.delete('/time/delete/:id',checkAuth,TimeController.remove);//(successful)
+app.delete('/delete-time/:id',checkAuth,TimeController.remove);//(successful)
 app.get('/times',TimeController.getAll);//(successful)
 /* API's FOR DAY */
 app.post('/create-day',DayController.create);//(successful)
-app.patch('/day/:id',DayController.update);//(successful)
+app.patch('/update-day/:id',DayController.update);//(successful)
 app.get('/day/:id',DayController.getOne);//(successful)
 app.get('/days',DayController.getAll);//(successful)
-app.delete('/day/delete/:id',DayController.remove);//(successful)
+app.delete('/delete-day/:id',DayController.remove);//(successful)
+/* API's FOR DAY */
 app.listen(5555, ()=> console.log('Server up and running...'));

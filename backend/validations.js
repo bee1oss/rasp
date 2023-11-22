@@ -11,7 +11,6 @@ export const registerValidation=[
     body('fullName','Введите свое имя и должно содержать не менее 3 символов').isLength({min:3}),
 ];
 export const raspCreateValidation=[
-    body('day','Введите день').isLength({min:3}).isString(),
     body('predmed','Введите предмет').isLength({min:3}).isString(),
     body('group','Введите группу').isLength({min:3}).isString(),
     body('teacher','Введите преподаватель').isLength({min:3}).isString(),
