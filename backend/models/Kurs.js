@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const Kurs = mongoose.Schema({
-    courses:{
-        type:Integer,
+    course:{
+        type:Number,
         required:true
     }
 });

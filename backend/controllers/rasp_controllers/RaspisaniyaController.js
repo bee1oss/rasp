@@ -1,11 +1,8 @@
-import RaspModel from "../models/Rasp.js";
-import User from "../models/User.js";
-import TimeModel from "../models/Times.js";
-
+import RaspModel from "../../models/Rasp.js";
 
 export const getAll = async (req, res) => {
     try {
-        const rasps = await RaspModel.find().populate('user').populate('time').exec();
+        const rasps = await RaspModel.find().populate('user').populate('time').populate('day').exec();
         res.json(rasps);
         
     } catch (err) {

@@ -1,4 +1,4 @@
-import DayModel from "../models/Day.js";
+import DayModel from "../../models/Day.js";
 
 export const create = async (req, res) => {
     try {

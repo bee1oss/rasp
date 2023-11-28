@@ -1,56 +1,56 @@
-import TimeModel from "../models/Times.js";
+import KursModel from "../../models/Kurs.js";
 
 export const create = async (req, res) => {//ok
     try {
-        const timesDoc = new TimeModel({
-            time: req.body.time,
+        const coursesDoc = new KursModel({
+            course: req.body.course,
         });
-        const time = await timesDoc.save();
+        const course = await coursesDoc.save();
 
-        res.json(time);
+        res.json(course);
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'Cannot create time',
+            messeage: 'Cannot create course',
         });
     }
 };
 
 export const update = async (req, res) => {//ok
     try {
-        const timeId = req.params.id;
+        const courseId = req.params.id;
 
-        await TimeModel.updateOne({
-            _id: timeId,
+        await KursModel.updateOne({
+            _id: courseId,
         }, {
-            time: req.body.time,
+            course: req.body.course,
             
         });
         res.json({success: true});
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot update time',
+            message: 'Cannot update course',
         });
     }
 };
 
 export const remove = async (req, res) => {//ok
     try {
-        const timeId = req.params.id;
+        const courseId = req.params.id;
 
-        TimeModel.findOneAndDelete({
-            _id: timeId,
+        KursModel.findOneAndDelete({
+            _id: courseId,
         }, (err, doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
-                    message: 'Cannot delete time',
+                    message: 'Cannot delete course',
                 });
             }
             if (!doc) {
                 return res.status(404).json({
-                    message: 'Cannot find time for delete',
+                    message: 'Cannot find course for delete',
                 });
             }
             res.json({success: true,});
@@ -59,18 +59,18 @@ export const remove = async (req, res) => {//ok
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot delete time',
+            message: 'Cannot delete course',
         });
     }
 };
 
 export const getOne = async (req, res) => {//ok
     try {
-        const timeId = req.params.id;
+        const courseId = req.params.id;
 
-        TimeModel.findOneAndUpdate(
+        KursModel.findOneAndUpdate(
             {
-                _id: timeId,
+                _id: courseId,
             },
             {
                 returnDocument: 'after',
@@ -79,13 +79,13 @@ export const getOne = async (req, res) => {//ok
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
-                        message: 'Cannot find time',
+                        message: 'Cannot find course',
                     });
                 }
 
                 if (!doc) {
                     return res.status(404).json({
-                        message: 'Cannot find time',
+                        message: 'Cannot find course',
                     });
                 }
 
@@ -95,20 +95,20 @@ export const getOne = async (req, res) => {//ok
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot get time',
+            message: 'Cannot get course',
         });
     }
 };
 
-export const getAll = async (req, res) => {
+export const getAll = async (req, res) => {//ok
     try {
-        const times = await TimeModel.find();
-        res.json(times);
+        const courses = await KursModel.find();
+        res.json(courses);
         
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'time display operation failed',
+            messeage: 'course display operation failed',
         });
     }
 };
