@@ -15,15 +15,7 @@ const RaspSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    group:{
-        type: String,
-        required: true
-    },
     teacher:{
-        type: String,
-        required: true
-    },
-    kurs:{
         type: String,
         required: true
     },

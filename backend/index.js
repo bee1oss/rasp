@@ -21,11 +21,11 @@ app.post('/auth/login',loginValidation, handleValidationErrors, UserController.l
 app.post('/auth/register',registerValidation, handleValidationErrors, UserController.register);//registration api(successful)
 app.get('/auth/me', checkAuth, UserController.getMe);//(successful)
 /* API's FOR Syllabus */
-app.get('/syllabuses', RaspisaniyaController.getAll);//To see the full course schedule api(successful)
-app.post('/create-syllabus', checkAuth, raspCreateValidation, handleValidationErrors,RaspisaniyaController.create);//To create a lesson program api(successful)
-app.delete('/delete-syllabus/:id', checkAuth, RaspisaniyaController.remove);//To delete the course schedule(successful)
-app.get('/syllabus/:id',RaspisaniyaController.getOne);//To get a course program by its id(successful)
-app.patch('/update-syllabus/:id', RaspisaniyaController.update);//this for update syllabus(successful)
+app.get('/scheduleы', RaspisaniyaController.getAll);//To see the full course schedule api(successful)
+app.post('/create-schedule', checkAuth, raspCreateValidation, handleValidationErrors,RaspisaniyaController.create);//To create a lesson program api(successful)
+app.delete('/delete-schedule/:id', checkAuth, RaspisaniyaController.remove);//To delete the course schedule(successful)
+app.get('/schedule/:id',RaspisaniyaController.getOne);//To get a course program by its id(successful)
+app.patch('/update-schedule/:id', RaspisaniyaController.update);//this for update syllabus(successful)
 /* API's FOR TIME */
 app.post('/create-time',checkAuth,TimeController.create);//(successful)
 app.patch('/update-time/:id',checkAuth,TimeController.update);//(successful)
