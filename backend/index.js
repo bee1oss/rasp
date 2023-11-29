@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import {registerValidation, loginValidation, raspCreateValidation} from "./validations.js";
-import {UserController, RaspisaniyaController,TimeController,DayController,KursController,SpecialityController} from "./controllers/index.js";
+import {UserController, RaspisaniyaController,TimeController,DayController,KursController,SpecialityController,GroupCrontroller} from "./controllers/index.js";
 import {handleValidationErrors,checkAuth} from "./utils/index.js";
 //mongodb+srv://bega:1999@cluster0.yras7hz.mongodb.net/CRUD_DB?retryWrites=true&w=majority
 
@@ -56,5 +56,11 @@ app.delete('/delete-speciality/:id',SpecialityController.remove);//(successful)
 app.get('/speciality/:id',SpecialityController.getOne);//(successful)
 app.get('/specialities',SpecialityController.getAll);//(successful)
 
+/* API's FOR Groups */
+app.post('/create-group',GroupCrontroller.create);//(successful)
+app.patch('/update-group/:id',GroupCrontroller.update);//(successful)
+app.delete('/delete-group/:id',GroupCrontroller.remove);//(successful)
+app.get('/group/:id',GroupCrontroller.getOne);//(successful)
+app.get('/groups',GroupCrontroller.getAll);//(successful)
 
 app.listen(5555, ()=> console.log('Server up and running...'));
