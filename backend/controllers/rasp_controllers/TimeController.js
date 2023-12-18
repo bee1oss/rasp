@@ -1,4 +1,4 @@
-import TimeModel from "../../models/Times.js";
+import TimeModel from "../../models/rasp/Times.js";
 
 export const create = async (req, res) => {//ok
     try {

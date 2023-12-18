@@ -6,9 +6,8 @@ const Group = mongoose.Schema({
         required:true
     },
     kurs: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Kurses',
-        required: true
+        type:String,
+        required:true
         },
     speciality: { 
         type: mongoose.Schema.Types.ObjectId, 

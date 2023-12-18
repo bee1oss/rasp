@@ -1,8 +1,8 @@
-import GroupModel from "../../models/Group.js";
+import GroupModel from "../../models/group/Group.js";
 
 export const getAll = async (req, res) => {
     try {
-        const groups = await GroupModel.find().populate('kurs').populate('speciality').exec();
+        const groups = await GroupModel.find().populate('speciality').exec();
         res.json(groups);
         
     } catch (err) {
@@ -82,7 +82,7 @@ export const create = async (req, res) => {
     try {
         const doc = new GroupModel({
             group_number: req.body.group_number,
-            kurs: req.body.kursId,
+            kurs: req.body.kurs,
             speciality: req.body.specialityId
         });
         const group = await doc.save();
@@ -104,7 +104,7 @@ export const update = async (req, res) => {
             _id: groupId,
         }, {
             group_number: req.body.group_number,
-            kurs: req.body.kursId,
+            kurs: req.body.kurs,
             speciality: req.body.specialityId,
 
         });

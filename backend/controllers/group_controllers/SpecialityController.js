@@ -1,4 +1,4 @@
-import SpecialityModel from "../../models/Speciality.js";
+import SpecialityModel from "../../models/group/Speciality.js";
 
 export const create = async (req, res) => {//
     try {

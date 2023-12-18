@@ -1,56 +1,56 @@
-import DayModel from "../../models/rasp/Day.js";
+import TeacherModel from "../../models/rasp/Teacher.js";
 
 export const create = async (req, res) => {
     try {
-        const daysDoc = new DayModel({
-            day: req.body.day,
+        const teachersDoc = new TeacherModel({
+            teacher: req.body.teacher,
         });
-        const day = await daysDoc.save();
+        const teacher = await teachersDoc.save();
 
-        res.json(day);
+        res.json(teacher);
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'Cannot create day',
+            messeage: 'Cannot create teacher',
         });
     }
 };
 
 export const update = async (req, res) => {
     try {
-        const dayId = req.params.id;
+        const teacherId = req.params.id;
 
-        await DayModel.updateOne({
-            _id: dayId,
+        await TeacherModel.updateOne({
+            _id: teacherId,
         }, {
-            day: req.body.day,
+            teacher: req.body.teacher,
             
         });
         res.json({success: true});
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot update day',
+            message: 'Cannot update teacher',
         });
     }
 };
 
 export const remove = async (req, res) => {//en son denenecek
     try {
-        const dayId = req.params.id;
+        const teacherId = req.params.id;
 
-        DayModel.findOneAndDelete({
-            _id: dayId,
+        TeacherModel.findOneAndDelete({
+            _id: teacherId,
         }, (err, doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
-                    message: 'Cannot delete day',
+                    message: 'Cannot delete teacher',
                 });
             }
             if (!doc) {
                 return res.status(404).json({
-                    message: 'Cannot find day for delete',
+                    message: 'Cannot find teacher for delete',
                 });
             }
             res.json({success: true,});
@@ -59,18 +59,18 @@ export const remove = async (req, res) => {//en son denenecek
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot delete day',
+            message: 'Cannot delete teacher',
         });
     }
 };
 
 export const getOne = async (req, res) => {
     try {
-        const dayId = req.params.id;
+        const teacherId = req.params.id;
 
-        DayModel.findOneAndUpdate(
+        TeacherModel.findOneAndUpdate(
             {
-                _id: dayId,
+                _id: teacherId,
             },
             {
                 returnDocument: 'after',
@@ -79,13 +79,13 @@ export const getOne = async (req, res) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
-                        message: 'Cannot find day',
+                        message: 'Cannot find teacher',
                     });
                 }
 
                 if (!doc) {
                     return res.status(404).json({
-                        message: 'Cannot find day',
+                        message: 'Cannot find teacher',
                     });
                 }
 
@@ -102,13 +102,13 @@ export const getOne = async (req, res) => {
 
 export const getAll = async (req, res) => {
     try {
-        const days = await DayModel.find();
-        res.json(days);
+        const teachers = await TeacherModel.find();
+        res.json(teachers);
         
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'day display operation failed',
+            messeage: 'teachers display operation failed',
         });
     }
 };

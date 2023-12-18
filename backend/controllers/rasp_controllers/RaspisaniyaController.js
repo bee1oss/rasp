@@ -1,8 +1,8 @@
-import RaspModel from "../../models/Rasp.js";
+import RaspModel from "../../models/rasp/Rasp.js";
 
 export const getAll = async (req, res) => {
     try {
-        const rasps = await RaspModel.find().populate('user').populate('time').populate('day').exec();
+        const rasps = await RaspModel.find().populate('user').populate('time').populate('day').populate('group').populate('predmet').populate('teacher').exec();
         res.json(rasps);
         
     } catch (err) {
@@ -83,10 +83,9 @@ export const create = async (req, res) => {
         const doc = new RaspModel({
             time: req.body.timeId,
             day: req.body.dayId,
-            predmed: req.body.predmed,
-            group: req.body.group,
-            teacher: req.body.teacher,
-            kurs: req.body.kurs,
+            group: req.body.groupId,
+            predmet: req.body.predmetId,
+            teacher: req.body.teacherId,
             room: req.body.room,
             user: req.userId,
         });
@@ -110,10 +109,9 @@ export const update = async (req, res) => {
         }, {
             time: req.body.timeId,
             day: req.body.dayId,
-            predmed: req.body.predmed,
-            group: req.body.group,
-            teacher: req.body.teacher,
-            kurs: req.body.kurs,
+            group: req.body.groupId,
+            predmet: req.body.predmetId,
+            teacher: req.body.teacherId,
             room: req.body.room,
             user: req.userId,
 

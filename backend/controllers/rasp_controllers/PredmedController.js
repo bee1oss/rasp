@@ -1,56 +1,56 @@
-import DayModel from "../../models/rasp/Day.js";
+import PredmetModel from "../../models/rasp/Predmet.js";
 
 export const create = async (req, res) => {
     try {
-        const daysDoc = new DayModel({
-            day: req.body.day,
+        const predmetsDoc = new PredmetModel({
+            predmet: req.body.predmet,
         });
-        const day = await daysDoc.save();
+        const predmet = await predmetsDoc.save();
 
-        res.json(day);
+        res.json(predmet);
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'Cannot create day',
+            messeage: 'Cannot create predmet',
         });
     }
 };
 
 export const update = async (req, res) => {
     try {
-        const dayId = req.params.id;
+        const predmetId = req.params.id;
 
-        await DayModel.updateOne({
-            _id: dayId,
+        await PredmetModel.updateOne({
+            _id: predmetId,
         }, {
-            day: req.body.day,
+            predmet: req.body.predmet,
             
         });
         res.json({success: true});
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot update day',
+            message: 'Cannot update predmet',
         });
     }
 };
 
 export const remove = async (req, res) => {//en son denenecek
     try {
-        const dayId = req.params.id;
+        const predmetId = req.params.id;
 
-        DayModel.findOneAndDelete({
-            _id: dayId,
+        PredmetModel.findOneAndDelete({
+            _id: predmetId,
         }, (err, doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
-                    message: 'Cannot delete day',
+                    message: 'Cannot delete predmet',
                 });
             }
             if (!doc) {
                 return res.status(404).json({
-                    message: 'Cannot find day for delete',
+                    message: 'Cannot find predmet for delete',
                 });
             }
             res.json({success: true,});
@@ -59,18 +59,18 @@ export const remove = async (req, res) => {//en son denenecek
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot delete day',
+            message: 'Cannot delete predmet',
         });
     }
 };
 
 export const getOne = async (req, res) => {
     try {
-        const dayId = req.params.id;
+        const predmetId = req.params.id;
 
-        DayModel.findOneAndUpdate(
+        PredmetModel.findOneAndUpdate(
             {
-                _id: dayId,
+                _id: predmetId,
             },
             {
                 returnDocument: 'after',
@@ -79,13 +79,13 @@ export const getOne = async (req, res) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
-                        message: 'Cannot find day',
+                        message: 'Cannot find predmet',
                     });
                 }
 
                 if (!doc) {
                     return res.status(404).json({
-                        message: 'Cannot find day',
+                        message: 'Cannot find predmet',
                     });
                 }
 
@@ -95,20 +95,20 @@ export const getOne = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Cannot get day',
+            message: 'Cannot get predmet',
         });
     }
 };
 
 export const getAll = async (req, res) => {
     try {
-        const days = await DayModel.find();
-        res.json(days);
+        const predmets = await PredmetModel.find();
+        res.json(predmets);
         
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            messeage: 'day display operation failed',
+            messeage: 'predmet display operation failed',
         });
     }
 };

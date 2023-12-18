@@ -1,4 +1,4 @@
-import KursModel from "../../models/Kurs.js";
+import KursModel from "../../models/group/Kurs.js";
 
 export const create = async (req, res) => {//ok
     try {
